@@ -16,7 +16,7 @@ class UserTypeRepository implements UserTypeInterface
     public function getAll()
     {
         try {
-            $userTypes = UserType::where('isactive', '=', true)->get();
+            $userTypes = UserType::all();
             return $this->success('All user types', $userTypes);
         } catch (\Exception $exception) {
             return $this->error($exception->getMessage(), $exception->getCode());
@@ -72,6 +72,10 @@ class UserTypeRepository implements UserTypeInterface
             $userType = UserType::find($id);
             if (!$userType)
                 return $this->error('User type does not exits', 404);
+
+            if (!$userType->is_active)
+                return $this->error('User type does not exits', 404);
+
             $userType->is_active = false;
             $userType->save();
             return $this->success('User types deleted', null);

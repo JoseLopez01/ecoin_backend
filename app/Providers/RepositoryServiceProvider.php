@@ -13,6 +13,18 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->bind(
+            'App\Interfaces\AuthInterface',
+            'App\Repositories\AuthRepository'
+        );
+        $this->app->bind(
+            'App\Interfaces\UserTypeInterface',
+            'App\Repositories\UserTypeRepository'
+        );
+        $this->app->bind(
+            'App\Interfaces\SemesterInterface',
+            'App\Repositories\SemesterRepository'
+        );
     }
 
     /**
@@ -22,13 +34,5 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->app->bind(
-            'App\Interfaces\AuthInterface',
-            'App\Repositories\AuthRepository'
-        );
-        $this->app->bind(
-            'App\Interfaces\UserTypeInterface',
-            'App\Repositories\UserTypeRepository'
-        );
     }
 }

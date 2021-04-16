@@ -18,4 +18,25 @@ class UserTypeController extends Controller
     {
         return $this->userTypeInterface->getAll();
     }
+
+    public function getById($id)
+    {
+        return $this->userTypeInterface->getById($id);
+    }
+
+    public function create(Request $request)
+    {
+        return $this->userTypeInterface->create($request);
+    }
+
+    public function update(Request $request, $id)
+    {
+        return $this->userTypeInterface->update($request, $id);
+    }
+
+    public function delete($id)
+    {
+        return $this->userTypeInterface->delete($id);
+    }
+
 }
