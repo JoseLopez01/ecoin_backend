@@ -13,7 +13,10 @@ class Semester extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'semester_id';
+
     protected $fillable = [
-        'description'
+        'description',
+        'is_active'
     ];
 }
