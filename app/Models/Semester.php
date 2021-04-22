@@ -24,7 +24,7 @@ class Semester extends Model
     {
         return [
             'description' => $this->description,
-            'semesterid' => $this->semesterid,
+            'semesterid' => $this->semester_id,
             'isactive' => $this->is_active
         ];
     }
