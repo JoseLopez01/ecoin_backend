@@ -19,10 +19,10 @@ class AuthRepository implements AuthInterface {
                 'firstname' => 'required|string',
                 'lastname' => 'required|string',
                 'email' => 'required|email|unique:users',
-                'phonenumber' => 'unique:users',
+                'phonenumber' => 'unique:users,phone_number',
                 'usertypeid' => 'required|exists:user_types,user_type_id',
                 'semesterid' => 'required|exists:semesters,semester_id',
-                'password' => 'required|string|confirmed'
+                'password' => 'required|string'
             ]);
 
             $user = new User([
@@ -30,7 +30,7 @@ class AuthRepository implements AuthInterface {
                 'last_name' => $request->lastname,
                 'user_type_id' => $request->usertypeid,
                 'semester_id' => $request->semesterid,
-                'phonenumber' => $request->phonenumber,
+                'phone_number' => $request->phonenumber,
                 'email' => $request->email,
                 'password' => bcrypt($request->password),
             ]);
@@ -39,6 +39,7 @@ class AuthRepository implements AuthInterface {
 
             return $this->success('User created', null, 201);
         } catch (\Exception $exception) {
+            echo $exception;
             return $this->error($exception->getMessage(), $exception->getCode());
         }
     }
@@ -48,7 +49,7 @@ class AuthRepository implements AuthInterface {
         $request->validate([
             'email' => 'required|email|string',
             'password' => 'required|string',
-            'remember_me' => 'boolean'
+            'rememberme' => 'boolean'
         ]);
 
         $credential = request(['email', 'password']);
@@ -60,7 +61,7 @@ class AuthRepository implements AuthInterface {
         $tokenResult = $user->createToken('Personal Access Token');
         $token = $tokenResult->token;
 
-        if ($request->remember_me)
+        if ($request->rememberme)
             $token->expires_at = Carbon::now()->addWeeks(1);
 
         $token->save();
