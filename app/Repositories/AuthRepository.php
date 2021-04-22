@@ -16,12 +16,12 @@ class AuthRepository implements AuthInterface {
     {
         try {
             $request->validate([
-                'first_name' => 'required|string',
-                'last_name' => 'required|string',
+                'firstname' => 'required|string',
+                'lastname' => 'required|string',
                 'email' => 'required|email|unique:users',
                 'phonenumber' => 'unique:users',
-                'user_type_id' => 'required|exists:user_types,user_type_id',
-                'semester_id' => 'required|exists:semesters,semester_id',
+                'usertypeid' => 'required|exists:user_types,user_type_id',
+                'semesterid' => 'required|exists:semesters,semester_id',
                 'password' => 'required|string|confirmed'
             ]);
 
@@ -66,9 +66,9 @@ class AuthRepository implements AuthInterface {
         $token->save();
 
         return $this->success('', [
-            'access_token' => $tokenResult->accessToken,
-            'token_type' => 'Bearer',
-            'expires_at' => Carbon::parse($tokenResult->expires_at)->toDateTimeString()
+            'accesstoken' => $tokenResult->accessToken,
+            'tokentype' => 'Bearer',
+            'expiresat' => Carbon::parse($tokenResult->expires_at)->toDateTimeString()
         ]);
     }
 

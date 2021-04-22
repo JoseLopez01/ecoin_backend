@@ -49,4 +49,15 @@ class User extends Authenticatable
     {
         return $this->belongsTo(UserType::class, 'user_type_id', 'user_type_id');
     }
+
+    public function format() {
+        return [
+            'firstname' => $this->first_name,
+            'lastname' => $this->last_name,
+            'usertypeid' => $this->user_type_id,
+            'semesterid' => $this->semester_id,
+            'phonenumber' => $this->phonenumber,
+            'email' => $this->email,
+        ];
+    }
 }

@@ -19,4 +19,13 @@ class Semester extends Model
         'description',
         'is_active'
     ];
+
+    public function format()
+    {
+        return [
+            'description' => $this->description,
+            'semesterid' => $this->semesterid,
+            'isactive' => $this->is_active
+        ];
+    }
 }
