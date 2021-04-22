@@ -15,7 +15,7 @@ class SemesterRepository implements SemesterInterface
     public function getAll()
     {
         try {
-            $semesters = Semester::where('is_active', '=', true)->get();
+            $semesters = Semester::where('is_active', '=', true)->get()->map->format();
             return $this->success('All semesters', $semesters);
         } catch (\Exception $exception) {
             return $this->error($exception->getMessage(), $exception->getCode());

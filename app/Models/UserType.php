@@ -24,4 +24,13 @@ class UserType extends Model
     {
         return $this->hasMany(User::class, 'user_type_id', 'user_type_id');
     }
+
+    public function format()
+    {
+        return [
+            'description' => $this->description,
+            'isactive' => $this->is_active,
+            'usertypeid' => $this->user_type_id
+        ];
+    }
 }
