@@ -66,7 +66,7 @@ class AuthRepository implements AuthInterface {
 
         $token->save();
 
-        return $this->success('', [
+        return $this->success('User access info', [
             'accesstoken' => $tokenResult->accessToken,
             'tokentype' => 'Bearer',
             'expiresat' => Carbon::parse($tokenResult->expires_at)->toDateTimeString()
