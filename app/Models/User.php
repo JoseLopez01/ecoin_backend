@@ -51,6 +51,16 @@ class User extends Authenticatable
         return $this->belongsTo(UserType::class, 'user_type_id', 'user_type_id');
     }
 
+    public function semester()
+    {
+        return $this->belongsTo(Semester::class, 'semester_id', 'semester_id');
+    }
+
+    public function courses()
+    {
+        return $this->belongsToMany(Course::class, 'student_courses', 'user_id', 'course_id');
+    }
+
     public function format() {
         return [
             'firstname' => $this->first_name,
