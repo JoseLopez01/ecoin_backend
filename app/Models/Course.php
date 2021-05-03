@@ -25,4 +25,9 @@ class Course extends Model
     {
         return $this->hasMany(CourseSchedule::class, 'course_id', 'course_id');
     }
+
+    public function shop()
+    {
+        return $this->hasOne(Shop::class, 'course_id', 'course_id');
+    }
 }
