@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,4 +15,14 @@ class Course extends Model
       'name',
       'is_active'
     ];
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'student_courses', 'course_id', 'user_id');
+    }
+
+    public function schedules()
+    {
+        return $this->hasMany(CourseSchedule::class, 'course_id', 'course_id');
+    }
 }

@@ -20,6 +20,11 @@ class Semester extends Model
         'is_active'
     ];
 
+    public function users()
+    {
+        return $this->hasMany(User::class, 'semester_id', 'semester_id');
+    }
+
     public function format()
     {
         return [
