@@ -2,9 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @mixin Builder
+ */
 class Course extends Model
 {
     use HasFactory;
@@ -28,5 +32,14 @@ class Course extends Model
     public function shop()
     {
         return $this->hasOne(Shop::class, 'course_id', 'course_id');
+    }
+
+    public function format()
+    {
+        return [
+          'userid' => $this->user_id,
+          'name' => $this->name,
+          'isactive' => $this->is_active
+        ];
     }
 }

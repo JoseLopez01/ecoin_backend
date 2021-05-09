@@ -2,9 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @mixin Builder
+*/
 class Deliverable extends Model
 {
     use HasFactory;
@@ -25,5 +29,16 @@ class Deliverable extends Model
     public function files()
     {
         return $this->hasMany(DeliverableFile::class, 'deliverable_id', 'deliverable_id');
+    }
+
+    public function format()
+    {
+        return [
+          'userid' => $this->user_id,
+          'activityid' => $this->activity_id,
+          'statusid' => $this->status_id,
+          'deliverabledate' => $this->deliverable_date,
+          'comments' => $this->comments
+        ];
     }
 }

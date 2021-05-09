@@ -2,9 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @mixin Builder
+ */
 class Shop extends Model
 {
     use HasFactory;
@@ -22,5 +26,13 @@ class Shop extends Model
     public function rewards()
     {
         return $this->hasMany(Reward::class, 'shop_id', 'shop_id');
+    }
+
+    public function format()
+    {
+        return [
+            'classid' => $this->class_id,
+            'isactive' => $this->is_active
+        ];
     }
 }
