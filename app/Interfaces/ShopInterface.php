@@ -40,4 +40,18 @@ interface ShopInterface {
      * @method DELETE
      */
     public function delete(int $id);
+
+    /**
+     * Gets course related to a shop
+     *
+     * @method GET
+    */
+    public function getCourse(int $shopId);
+
+    /**
+     * Gets rewards for a shop
+     *
+     * @method GET
+    */
+    public function getRewards(int $shopId);
 }

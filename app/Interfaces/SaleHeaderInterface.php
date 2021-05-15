@@ -40,4 +40,18 @@ interface SaleHeaderInterface {
      * @method DELETE
      */
     public function delete(int $id);
+
+    /**
+     * Get status
+     *
+     * @method GET
+    */
+    public function getStatus($saleId);
+
+    /**
+     * Gets details for a sale
+     *
+     * @method GET
+    */
+    public function getDetails($saleId);
 }

@@ -64,22 +64,27 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::prefix('activities')->group(function () {
         Route::get('', [ActivityController::class, 'getAll']);
         Route::get('/{id}', [ActivityController::class, 'getById']);
+        Route::get('/{id}/class', [ActivityController::class, 'getActivityClass']);
 
         Route::group(['middleware' => ['auth', 'checkUserType:Admin,Teacher']], function () {
             Route::post('', [ActivityController::class, 'create']);
             Route::put('/{id}', [ActivityController::class, 'update']);
             Route::delete('/{id}', [ActivityController::class, 'delete']);
+            Route::get('/activity={activityId}&status={deliverableStatus}', [ActivityController::class, 'getDeliverablesByStatus']);
         });
     });
 
     Route::prefix('courses')->group(function () {
         Route::get('', [CourseController::class, 'getAll']);
         Route::get('/{id}', [CourseController::class, 'getById']);
+        Route::get('/{classId}/shop', [CourseController::class, 'getClassShop']);
+        Route::get('/{classId}/schedules', [CourseController::class, 'getSchedules']);
 
         Route::group(['middleware' => ['auth', 'checkUserType:Admin,Teacher']], function () {
             Route::post('', [CourseController::class, 'create']);
             Route::put('/{id}', [CourseController::class, 'update']);
             Route::delete('/{id}', [CourseController::class, 'delete']);
+            Route::get('/{classId}/students', [CourseController::class, 'getStudents']);
         });
     });
 
@@ -89,6 +94,8 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::put('/{id}', [DeliverableController::class, 'update']);
         Route::get('/{id}', [DeliverableController::class, 'getById']);
         Route::delete('/{id}', [DeliverableController::class, 'delete']);
+        Route::get('/{deliverableId}/files', [DeliverableController::class, 'getFiles']);
+        Route::get('/{deliverableId}/status', [DeliverableController::class, 'getStatus']);
     });
 
     Route::prefix('deliverable-statuses')->group(function () {
@@ -116,6 +123,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::prefix('rewards')->group(function () {
         Route::get('', [RewardController::class, 'getAll']);
         Route::get('/{id}', [RewardController::class, 'getById']);
+        Route::get('/{rewardId}/price', [RewardController::class, 'getPrice']);
 
         Route::group(['middleware' => ['auth', 'checkUserType:Admin,Teacher']], function () {
             Route::post('', [RewardController::class, 'create']);
@@ -129,6 +137,7 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::post('', [SaleDetailController::class, 'create']);
         Route::put('/{id}', [SaleDetailController::class, 'update']);
         Route::get('/{id}', [SaleDetailController::class, 'getById']);
+        Route::get('/{detailId}/sale', [SaleDetailController::class, 'getSale']);
 
         Route::group(['middleware' => ['auth', 'checkUserType:Admin,Teacher']], function () {
             Route::delete('/{id}', [SaleDetailController::class, 'delete']);
@@ -140,6 +149,8 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::post('', [SaleHeaderController::class, 'create']);
         Route::put('/{id}', [SaleHeaderController::class, 'update']);
         Route::get('/{id}', [SaleHeaderController::class, 'getById']);
+        Route::get('/{saleId}/status', [SaleHeaderController::class, 'getStatus']);
+        Route::get('/{saleId}/details', [SaleHeaderController::class, 'getDetails']);
 
         Route::group(['middleware' => ['auth', 'checkUserType:Admin,Teacher']], function () {
             Route::delete('/{id}', [SaleHeaderController::class, 'delete']);

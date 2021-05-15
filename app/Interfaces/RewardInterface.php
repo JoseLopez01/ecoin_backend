@@ -40,4 +40,11 @@ interface RewardInterface {
      * @method DELETE
      */
     public function delete(int $id);
+
+    /**
+     * Gets price
+     *
+     * @method GET
+    */
+    public function getPrice($rewardId);
 }

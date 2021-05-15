@@ -63,4 +63,24 @@ class DeliverableController extends Controller
     {
         return $this->deliverableInterface->delete($id);
     }
+
+    /**
+     * Gets status of a deliverable
+     *
+     * @method GET
+     */
+    public function getStatus(int $deliverableId)
+    {
+        return $this->deliverableInterface->getStatus($deliverableId);
+    }
+
+    /**
+     * Gets files related to a deliverable
+     *
+     * @method GET
+     */
+    public function getFiles(int $deliverableId)
+    {
+        return $this->deliverableInterface->getFiles($deliverableId);
+    }
 }

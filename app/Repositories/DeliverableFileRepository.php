@@ -61,7 +61,7 @@ class DeliverableFileRepository implements DeliverableFileInterface
             $file->name = $request->name;
             $file->save();
 
-            return $this->success('File updated');
+            return $this->success('File updated', null);
         } catch (\Exception $exception) {
             return $this->error($exception->getMessage(), $exception->getCode());
         }
@@ -78,7 +78,23 @@ class DeliverableFileRepository implements DeliverableFileInterface
             $file->is_active = false;
             $file->save();
 
-            return $this->success('File deleted');
+            return $this->success('File deleted', null);
+        } catch (\Exception $exception) {
+            return $this->error($exception->getMessage(), $exception->getCode());
+        }
+    }
+
+    public function getDeliverable(int $fileId)
+    {
+        try {
+            $file = DeliverableFile::find($fileId);
+
+            if (!$file)
+                return $this->error('File not found', 404);
+
+            $deliverable = $file->deliverable();
+
+            return $this->success('', $deliverable);
         } catch (\Exception $exception) {
             return $this->error($exception->getMessage(), $exception->getCode());
         }

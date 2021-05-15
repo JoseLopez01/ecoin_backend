@@ -40,4 +40,11 @@ interface SaleDetailInterface {
      * @method DELETE
      */
     public function delete(int $id);
+
+    /**
+     * Gets sale related to a detail
+     *
+     * @method GET
+    */
+    public function getSale($detailId);
 }

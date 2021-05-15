@@ -38,4 +38,34 @@ class CourseController extends Controller
     {
         return $this->courseInterface->delete($id);
     }
+
+    /**
+     * Gets schedules related to a course
+     *
+     * @method GET
+     */
+    public function getSchedules($classId)
+    {
+        return $this->courseInterface->getSchedules($classId);
+    }
+
+    /**
+     * Gets students registered in a class
+     *
+     * @method GET
+     */
+    public function getStudents($classId)
+    {
+        return $this->courseInterface->getStudents($classId);
+    }
+
+    /**
+     * Gets shop related to a course
+     *
+     * @method GET
+     */
+    public function getClassShop($classId)
+    {
+        return $this->courseInterface->getClassShop($classId);
+    }
 }

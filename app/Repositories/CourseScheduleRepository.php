@@ -63,7 +63,7 @@ class CourseScheduleRepository implements CourseScheduleInterface
             $schedule->week_day_id = $request->weekdayid;
             $schedule->save();
 
-            return $this->success('Schedule updated');
+            return $this->success('Schedule updated', null);
         } catch (\Exception $exception) {
             return $this->error($exception->getMessage(), $exception->getCode());
         }
@@ -79,7 +79,39 @@ class CourseScheduleRepository implements CourseScheduleInterface
 
             $schedule->is_active = false;
 
-            return $this->success('Schedule deleted');
+            return $this->success('Schedule deleted', null);
+        } catch (\Exception $exception) {
+            return $this->error($exception->getMessage(), $exception->getCode());
+        }
+    }
+
+    public function getCourse($scheduleId)
+    {
+        try {
+            $schedule = CourseSchedule::find($scheduleId);
+
+            if (!$scheduleId)
+                return $this->error('Course schedule not found', 404);
+
+            $course = $schedule->course();
+
+            return $this->success('', $course);
+        } catch (\Exception $exception) {
+            return $this->error($exception->getMessage(), $exception->getCode());
+        }
+    }
+
+    public function getWeekDay($scheduleId)
+    {
+        try {
+            $schedule = CourseSchedule::find($scheduleId);
+
+            if (!$scheduleId)
+                return $this->error('Course schedule not found', 404);
+
+            $weekDay = $schedule->weekDay();
+
+            return $this->success('', $weekDay);
         } catch (\Exception $exception) {
             return $this->error($exception->getMessage(), $exception->getCode());
         }

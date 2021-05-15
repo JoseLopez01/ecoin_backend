@@ -63,4 +63,14 @@ class RewardController extends Controller
     {
         return $this->rewardInterface->delete($id);
     }
+
+    /**
+     * Gets price
+     *
+     * @method GET
+     */
+    public function getPrice($rewardId)
+    {
+        return $this->rewardInterface->getPrice($rewardId);
+    }
 }

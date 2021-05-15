@@ -63,4 +63,14 @@ class SaleDetailController extends Controller
     {
         return $this->saleDetailInterface->delete($id);
     }
+
+    /**
+     * Gets sale related to a detail
+     *
+     * @method GET
+     */
+    public function getSale($detailId)
+    {
+        return $this->saleDetailInterface->getSale($detailId);
+    }
 }

@@ -63,4 +63,14 @@ class DeliverableFileController extends Controller
     {
         return $this->deliverableFileInterface->delete($id);
     }
+
+    /**
+     * Gets deliverable related a file
+     *
+     * @method GET
+     */
+    public function getDeliverable(int $fileId)
+    {
+        return $this->deliverableFileInterface->getDeliverable($fileId);
+    }
 }

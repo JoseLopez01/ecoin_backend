@@ -8,7 +8,6 @@ use App\Interfaces\ShopInterface;
 use App\Models\Shop;
 use Illuminate\Http\Request;
 use App\Traits\ResponseAPI;
-use function Psy\sh;
 
 class ShopRepository implements ShopInterface
 {
@@ -61,7 +60,7 @@ class ShopRepository implements ShopInterface
             $shop->class_id = $request->classid;
             $shop->save();
 
-            return $this->success('Shop updated');
+            return $this->success('Shop updated', null);
         } catch (\Exception $exception) {
             return $this->error($exception->getMessage(), $exception->getCode());
         }
@@ -78,7 +77,39 @@ class ShopRepository implements ShopInterface
             $shop->is_active = false;
             $shop->save();
 
-            return $this->success('Shop deleted');
+            return $this->success('Shop deleted', null);
+        } catch (\Exception $exception) {
+            return $this->error($exception->getMessage(), $exception->getCode());
+        }
+    }
+
+    public function getCourse(int $shopId)
+    {
+        try {
+            $shop = Shop::find($shopId);
+
+            if (!$shop)
+                return $this->error('Shop not found', 404);
+
+            $course = $shop->course();
+
+            return $this->success('', $course);
+        } catch (\Exception $exception) {
+            return $this->error($exception->getMessage(), $exception->getCode());
+        }
+    }
+
+    public function getRewards(int $shopId)
+    {
+        try {
+            $shop = Shop::find($shopId);
+
+            if (!$shop)
+                return $this->error('Shop not found', 404);
+
+            $rewards = $shop->rewards();
+
+            return $this->success('', $rewards);
         } catch (\Exception $exception) {
             return $this->error($exception->getMessage(), $exception->getCode());
         }

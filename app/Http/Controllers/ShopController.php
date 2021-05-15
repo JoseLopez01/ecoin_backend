@@ -63,4 +63,14 @@ class ShopController extends Controller
     {
         return $this->shopInterface->delete($id);
     }
+
+    /**
+     * Gets rewards for a shop
+     *
+     * @method GET
+     */
+    public function getRewards(int $shopId)
+    {
+        return $this->shopInterface->getRewards($shopId);
+    }
 }

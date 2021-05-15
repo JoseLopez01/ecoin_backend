@@ -63,4 +63,24 @@ class ActivityController extends Controller
     {
         return $this->activityInterface->delete($id);
     }
+
+    /**
+     * Gets all activities for a class
+     *
+     * @method GET
+     */
+    public function getActivityClass(int $id)
+    {
+        return $this->activityInterface->getClassActivities($id);
+    }
+
+    /**
+     * Gets deliverables by status
+     *
+     * @method GET
+     */
+    public function getDeliverablesByStatus(int $activityId, int $deliverableStatus)
+    {
+        return $this->activityInterface->getDeliverablesByStatus($activityId, $deliverableStatus);
+    }
 }

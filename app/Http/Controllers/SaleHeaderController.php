@@ -63,4 +63,24 @@ class SaleHeaderController extends Controller
     {
         return $this->saleHeaderInterface->delete($id);
     }
+
+    /**
+     * Get status
+     *
+     * @method GET
+     */
+    public function getStatus($saleId)
+    {
+        return $this->saleHeaderInterface->getStatus($saleId);
+    }
+
+    /**
+     * Gets details for a sale
+     *
+     * @method GET
+     */
+    public function getDetails($saleId)
+    {
+        return $this->saleHeaderInterface->getDetails($saleId);
+    }
 }

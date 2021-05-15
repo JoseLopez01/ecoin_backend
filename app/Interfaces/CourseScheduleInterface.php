@@ -40,4 +40,16 @@ interface CourseScheduleInterface {
      * @method DELETE
     */
     public function delete(int $id);
+
+    /**
+     * Gets course related to a schedule
+     *
+     * @method GET
+    */
+    public function getCourse($scheduleId);
+
+    /**
+     * Gets weekday related to a schedule
+    */
+    public function getWeekDay($scheduleId);
 }

@@ -67,7 +67,7 @@ class ActivityRepository implements ActivityInterface
             $activity->description = $request->description;
             $activity->save();
 
-            return $this->success('Activity updated');
+            return $this->success('Activity updated', null);
         } catch (\Exception $exception) {
             return $this->error($exception->getMessage(), $exception->getCode());
         }
@@ -79,12 +79,42 @@ class ActivityRepository implements ActivityInterface
             $activity = Activity::find($id);
 
             if (!$activity)
-                return $this->error('Activity not found');
+                return $this->error('Activity not found', 404);
 
             $activity->is_active = false;
             $activity->save();
 
-            return $this->success('Activity deleted');
+            return $this->success('Activity deleted', 404);
+        } catch (\Exception $exception) {
+            return $this->error($exception->getMessage(), $exception->getCode());
+        }
+    }
+
+    public function getActivityClass(int $id)
+    {
+        try {
+            $activity = Activity::find($id);
+
+            if (!$activity)
+                return $this->error('Activity not found', 404);
+
+            return $this->success('', $activity->course());
+        } catch (\Exception $exception) {
+            return $this->error($exception->getMessage(), $exception->getCode());
+        }
+    }
+
+    public function getDeliverablesByStatus(int $activityId, int $deliverableStatus)
+    {
+        try {
+            $activity = Activity::find($activityId);
+
+            if (!$activityId)
+                return $this->error('Activity not found', 404);
+
+            $deliverables = $activity->deliverables()->where('status_id', '=', $deliverableStatus);
+
+            return $this->success('', $deliverables);
         } catch (\Exception $exception) {
             return $this->error($exception->getMessage(), $exception->getCode());
         }

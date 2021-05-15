@@ -40,4 +40,11 @@ interface DeliverableFileInterface {
      * @method DELETE
      */
     public function delete(int $id);
+
+    /**
+     * Gets deliverable related a file
+     *
+     * @method GET
+    */
+    public function getDeliverable(int $fileId);
 }

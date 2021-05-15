@@ -44,4 +44,11 @@ interface SemesterInterface
      * @param Integer $id
     */
     public function delete(int $id);
+
+    /**
+     * Gets students on a semester
+     *
+     * @method GET
+    */
+    public function getStudents($semesterId);
 }

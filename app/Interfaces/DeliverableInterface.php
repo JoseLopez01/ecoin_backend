@@ -40,4 +40,18 @@ interface DeliverableInterface {
      * @method DELETE
     */
     public function delete(int $id);
+
+    /**
+     * Gets status of a deliverable
+     *
+     * @method GET
+    */
+    public function getStatus(int $deliverableId);
+
+    /**
+     * Gets files related to a deliverable
+     *
+     * @method GET
+    */
+    public function getFiles(int $deliverableId);
 }

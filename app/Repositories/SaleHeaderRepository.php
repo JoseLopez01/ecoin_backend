@@ -28,7 +28,7 @@ class SaleHeaderRepository implements SaleHeaderInterface
         try {
             $sale = SaleHeader::find($id);
             if (!$sale)
-                return $this->error('Sale not found');
+                return $this->error('Sale not found', 404);
 
             return $this->success('', $sale);
         } catch (\Exception $exception) {
@@ -56,9 +56,9 @@ class SaleHeaderRepository implements SaleHeaderInterface
         try {
             $sale = SaleHeader::find($id);
             if (!$sale)
-                return $this->error('Sale not found');
+                return $this->error('Sale not found', 404);
 
-            return $this->success('Sale updated');
+            return $this->success('Sale updated', null);
         } catch (\Exception $exception) {
             return $this->error($exception->getMessage(), $exception->getCode());
         }
@@ -69,9 +69,40 @@ class SaleHeaderRepository implements SaleHeaderInterface
         try {
             $sale = SaleHeader::find($id);
             if (!$sale)
-                return $this->error('Sale not found');
+                return $this->error('Sale not found', 404);
 
-            return $this->error('Sale deleted');
+            return $this->success('Sale deleted', null);
+        } catch (\Exception $exception) {
+            return $this->error($exception->getMessage(), $exception->getCode());
+        }
+    }
+
+    public function getDetails($saleId)
+    {
+        try {
+            $sale = SaleHeader::find($saleId);
+            if (!$sale)
+                return $this->error('Sale not found', 404);
+
+            $details = $sale->details();
+
+            return $this->success('', $details);
+        } catch (\Exception $exception) {
+            return $this->error($exception->getMessage(), $exception->getCode());
+        }
+    }
+
+    public function getStatus($saleId)
+    {
+        try {
+            $sale = SaleHeader::find($saleId);
+
+            if (!$sale)
+                return $this->error('Sale not found', 404);
+
+            $status = $sale->status();
+
+            return $this->success('', $status);
         } catch (\Exception $exception) {
             return $this->error($exception->getMessage(), $exception->getCode());
         }

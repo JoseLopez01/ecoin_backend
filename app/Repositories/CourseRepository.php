@@ -84,4 +84,52 @@ class CourseRepository implements CourseInterface
             return $this->error($exception->getMessage(), $exception->getCode());
         }
     }
+
+    public function getStudents($classId)
+    {
+        try {
+            $course = Course::find($classId);
+
+            if (!$course)
+                return $this->error('Course not found', 404);
+
+            $students = $course->users();
+
+            return $this->success('', $students);
+        } catch (\Exception $exception) {
+            return $this->error($exception->getMessage(), $exception->getCode());
+        }
+    }
+
+    public function getClassShop($classId)
+    {
+        try {
+            $course = Course::find($classId);
+
+            if (!$course)
+                return $this->error('Course not found', 404);
+
+            $shop = $course->shop();
+
+            return $this->success('', $shop);
+        } catch (\Exception $exception) {
+            return $this->error($exception->getMessage(), $exception->getCode());
+        }
+    }
+
+    public function getSchedules($classId)
+    {
+        try {
+            $course = Course::find($classId);
+
+            if (!$course)
+                return $this->error('Course not found', 404);
+
+            $schedules = $course->schedules();
+
+            return $this->success('', $schedules);
+        } catch (\Exception $exception) {
+            return $this->error($exception->getMessage(), $exception->getCode());
+        }
+    }
 }

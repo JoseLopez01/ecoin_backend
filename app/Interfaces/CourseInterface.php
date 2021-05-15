@@ -35,4 +35,25 @@ interface CourseInterface {
      * @method DELETE
     */
     public function delete(int $did);
+
+    /**
+     * Gets schedules related to a course
+     *
+     * @method GET
+    */
+    public function getSchedules($classId);
+
+    /**
+     * Gets students registered in a class
+     *
+     * @method GET
+    */
+    public function getStudents($classId);
+
+    /**
+     * Gets shop related to a course
+     *
+     * @method GET
+    */
+    public function getClassShop($classId);
 }

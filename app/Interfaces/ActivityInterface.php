@@ -23,7 +23,7 @@ interface  ActivityInterface {
     /**
      * Creates a new resource
      *
-     * @methos POST
+     * @method POST
     */
     public function create(Request $request);
 
@@ -40,4 +40,18 @@ interface  ActivityInterface {
      * @method DELETE
     */
     public function delete(int $id);
+
+    /**
+     * Gets all activities for a class
+     *
+     * @method GET
+    */
+    public function getActivityClass(int $id);
+
+    /**
+     * Gets deliverables by status
+     *
+     * @method GET
+    */
+    public function getDeliverablesByStatus(int $activityId, int $deliverableStatus);
 }

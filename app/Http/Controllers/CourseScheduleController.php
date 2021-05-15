@@ -63,4 +63,22 @@ class CourseScheduleController extends Controller
     {
         return $this->courseScheduleInterface->delete($id);
     }
+
+    /**
+     * Gets course related to a schedule
+     *
+     * @method GET
+     */
+    public function getCourse($scheduleId)
+    {
+        return $this->courseScheduleInterface->getCourse($scheduleId);
+    }
+
+    /**
+     * Gets weekday related to a schedule
+     */
+    public function getWeekDay($scheduleId)
+    {
+        return $this->courseScheduleInterface->getWeekDay($scheduleId);
+    }
 }

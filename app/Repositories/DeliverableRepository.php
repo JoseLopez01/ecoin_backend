@@ -66,7 +66,7 @@ class DeliverableRepository implements DeliverableInterface
             $deliverable->comments = $request->comments;
             $deliverable->save();
 
-            return $this->success('Activity updated');
+            return $this->success('Activity updated', null);
 
         } catch (\Exception $exception) {
             return $this->error($exception->getMessage(), $exception->getCode());
@@ -81,7 +81,39 @@ class DeliverableRepository implements DeliverableInterface
             if (!$deliverable)
                 return $this->error('Deliverable not found', 404);
 
-            return $this->success('deleted');
+            return $this->success('deleted', null);
+        } catch (\Exception $exception) {
+            return $this->error($exception->getMessage(), $exception->getCode());
+        }
+    }
+
+    public function getStatus(int $deliverableId)
+    {
+        try {
+            $deliverable = Deliverable::find($deliverableId);
+
+            if (!$deliverable)
+                return $this->error('Deliverable not found', 404);
+
+            $status = $deliverable->status();
+
+            return $this->success('', $status);
+        } catch (\Exception $exception) {
+            return $this->error($exception->getMessage(), $exception->getCode());
+        }
+    }
+
+    public function getFiles(int $deliverableId)
+    {
+        try {
+            $deliverable = Deliverable::find($deliverableId);
+
+            if (!$deliverable)
+                return $this->error('Deliverable not found', 404);
+
+            $files = $deliverable->files();
+
+            return $this->success('', $files);
         } catch (\Exception $exception) {
             return $this->error($exception->getMessage(), $exception->getCode());
         }

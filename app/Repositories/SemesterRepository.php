@@ -80,4 +80,20 @@ class SemesterRepository implements SemesterInterface
             return $this->error($exception->getMessage(), $exception->getCode());
         }
     }
+
+    public function getStudents($semesterId)
+    {
+        try {
+            $semester = Semester::find($semesterId);
+
+            if (!$semester)
+                return $this->error('Semester not found', 404);
+
+            $students = $semester->users();
+
+            return $this->success('', $students);
+        } catch (\Exception $exception) {
+            return $this->error($exception->getMessage(), $exception->getCode());
+        }
+    }
 }

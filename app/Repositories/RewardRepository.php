@@ -64,7 +64,7 @@ class RewardRepository implements RewardInterface
             $reward->description = $request->description;
             $reward->save();
 
-            return $this->success('Reward updated');
+            return $this->success('Reward updated', 404);
         } catch (\Exception $exception) {
             return $this->error($exception->getMessage(), $exception->getCode());
         }
@@ -81,7 +81,23 @@ class RewardRepository implements RewardInterface
             $reward->is_active = false;
             $reward->save();
 
-            return $this->success('Reward deleted');
+            return $this->success('Reward deleted', null);
+        } catch (\Exception $exception) {
+            return $this->error($exception->getMessage(), $exception->getCode());
+        }
+    }
+
+    public function getPrice($rewardId)
+    {
+        try {
+            $reward = Reward::find($rewardId);
+
+            if (!$reward)
+                return $this->error('Reward not found', 404);
+
+            $price = $reward->price()->where('is_active', '=', true);
+
+            return $this->success('',  $price);
         } catch (\Exception $exception) {
             return $this->error($exception->getMessage(), $exception->getCode());
         }

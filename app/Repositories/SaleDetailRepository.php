@@ -60,7 +60,7 @@ class SaleDetailRepository implements SaleDetailInterface
             if (!$detail)
                 return $this->error('Detail not found', 404);
 
-            return $this->success('Detail updated');
+            return $this->success('Detail updated', null);
         } catch (\Exception $exception) {
             return $this->error($exception->getMessage(), $exception->getCode());
         }
@@ -74,7 +74,23 @@ class SaleDetailRepository implements SaleDetailInterface
             if (!$detail)
                 return $this->error('Detail not found', 404);
 
-            return $this->success('Detail deleted');
+            return $this->success('Detail deleted', null);
+        } catch (\Exception $exception) {
+            return $this->error($exception->getMessage(), $exception->getCode());
+        }
+    }
+
+    public function getSale($detailId)
+    {
+        try {
+            $detail = SaleDetail::find($detailId);
+
+            if (!$detail)
+                return $this->error('Detail not found', 404);
+
+            $sale = $detail->sale();
+
+            return $this->success('', $sale);
         } catch (\Exception $exception) {
             return $this->error($exception->getMessage(), $exception->getCode());
         }
