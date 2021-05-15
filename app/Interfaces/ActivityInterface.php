@@ -4,8 +4,7 @@ namespace App\Interfaces;
 
 use Illuminate\Http\Request;
 
-interface SemesterInterface
-{
+interface  ActivityInterface {
 
     /**
      * Gets all active resources
@@ -15,9 +14,7 @@ interface SemesterInterface
     public function getAll();
 
     /**
-     * Gets a single resource by its id
-     *
-     * @param Integer $id
+     * Gets a single resource
      *
      * @method GET
     */
@@ -26,29 +23,35 @@ interface SemesterInterface
     /**
      * Creates a new resource
      *
-     * @param Request $request
+     * @method POST
     */
     public function create(Request $request);
 
     /**
      * Updates a existing resource
      *
-     * @param Request $request
-     * @param Integer $id
+     * @method PUT
     */
     public function update(Request $request, int $id);
 
     /**
      * Deletes a existing resource
      *
-     * @param Integer $id
+     * @method DELETE
     */
     public function delete(int $id);
 
     /**
-     * Gets students on a semester
+     * Gets all activities for a class
      *
      * @method GET
     */
-    public function getStudents($semesterId);
+    public function getActivityClass(int $id);
+
+    /**
+     * Gets deliverables by status
+     *
+     * @method GET
+    */
+    public function getDeliverablesByStatus(int $activityId, int $deliverableStatus);
 }
