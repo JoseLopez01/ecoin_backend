@@ -26,7 +26,7 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Repositories\SemesterRepository'
         );
         $this->app->bind(
-            'App\Interfaces\WeekdayInterface',
+            'App\Interfaces\WeekDayInterface',
             'App\Repositories\WeekDayRepository'
         );
         $this->app->bind(
