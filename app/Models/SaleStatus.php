@@ -2,9 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @mixin Builder
+ */
 class SaleStatus extends Model
 {
     use HasFactory;
@@ -17,5 +21,13 @@ class SaleStatus extends Model
     public function sales()
     {
         return $this->hasMany(SaleHeader::class, 'status_id', 'status_id');
+    }
+
+    public function format()
+    {
+        return [
+            'description' => $this->description,
+            'isactive' => $this->is_active
+        ];
     }
 }
