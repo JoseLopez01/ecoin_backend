@@ -10,17 +10,20 @@ class CheckUserType
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param Request $request
+     * @param Closure $next
+     * @param string $role
+     * @param string $role2
      * @return mixed
      */
-    public function handle(Request $request, Closure $next, $role = '', $role2 = '')
+    public function handle(Request $request, Closure $next, string $role = '', string $role2 = '')
     {
         $user = $request->user();
 
         if ($user)
         {
-            $userType = $user->userType()->description;
+            $userType = $user->userType()->get()[0]->description;
+
             $checkUserType = 0;
             if (($userType == $role || $userType == $role2) && $role == 'Admin')
             {
