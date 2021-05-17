@@ -44,7 +44,7 @@ class CourseRepository implements CourseInterface
     {
         try {
             $course = new Course();
-            $course->user_id = $request->user_id;
+            $course->user_id = $request->user()->user_id;
             $course->name = $request->name;
             $course->save();
 
