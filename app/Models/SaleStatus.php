@@ -18,6 +18,8 @@ class SaleStatus extends Model
         'is_active'
     ];
 
+    protected $primaryKey = 'status_id';
+
     public function sales()
     {
         return $this->hasMany(SaleHeader::class, 'status_id', 'status_id');

@@ -19,6 +19,8 @@ class WeekDay extends Model
       'is_active'
     ];
 
+    protected $primaryKey = 'week_day_id';
+
     public function schedules()
     {
         return $this->hasMany(CourseSchedule::class, 'week_day_id', 'week_day_id');
@@ -28,7 +30,8 @@ class WeekDay extends Model
     {
         return [
             'description' => $this->description,
-            'isactive' => $this->is_active
+            'isactive' => $this->is_active,
+            'weekdayid' => $this->week_day_id
         ];
     }
 }

@@ -20,6 +20,8 @@ class Price extends Model
       'is_active'
     ];
 
+    protected $primaryKey = 'price_id';
+
     public function reward()
     {
         return $this->belongsTo(Reward::class, 'reward_id', 'reward_id');

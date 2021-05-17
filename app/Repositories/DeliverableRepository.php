@@ -32,7 +32,7 @@ class DeliverableRepository implements DeliverableInterface
             if (!$deliverable)
                 return $this->error('Deliverable not found', 404);
 
-            return $this->success('', $deliverable);
+            return $this->success('', $deliverable->get()->format());
         } catch (\Exception $exception) {
             return $this->error($exception->getMessage(), $exception->getCode());
         }

@@ -22,6 +22,8 @@ class Activity extends Model
         'is_active'
     ];
 
+    protected $primaryKey = 'activity_id';
+
     public function course()
     {
         return $this->belongsTo(Course::class, 'class_id', 'class_id');

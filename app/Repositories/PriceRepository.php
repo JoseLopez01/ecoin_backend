@@ -17,7 +17,7 @@ class PriceRepository implements PriceInterface
     public function getAll()
     {
         try {
-            $prices = Price::where('is_active', '=', 'true');
+            $prices = Price::where('is_active', '=', 'true')->get()->format();
             return $this->success('', $prices);
         } catch (\Exception $exception) {
             return $this->error($exception->getMessage(), $exception->getCode());
@@ -32,7 +32,7 @@ class PriceRepository implements PriceInterface
             if (!$price)
                 return $this->error('Price not found', 404);
 
-            return $this->success('', $price);
+            return $this->success('', $price->get()->format());
         } catch (\Exception $exception) {
             return $this->error($exception->getMessage(), $exception->getCode());
         }

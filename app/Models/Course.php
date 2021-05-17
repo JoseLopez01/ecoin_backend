@@ -19,6 +19,8 @@ class Course extends Model
       'is_active'
     ];
 
+    protected $primaryKey = 'course_id';
+
     public function users()
     {
         return $this->belongsToMany(User::class, 'student_courses', 'course_id', 'user_id');

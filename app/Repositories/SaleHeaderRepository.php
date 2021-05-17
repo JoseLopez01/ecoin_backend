@@ -30,7 +30,7 @@ class SaleHeaderRepository implements SaleHeaderInterface
             if (!$sale)
                 return $this->error('Sale not found', 404);
 
-            return $this->success('', $sale);
+            return $this->success('', $sale->get()->format());
         } catch (\Exception $exception) {
             return $this->error($exception->getMessage(), $exception->getCode());
         }

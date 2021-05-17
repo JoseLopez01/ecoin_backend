@@ -29,7 +29,7 @@ class SemesterRepository implements SemesterInterface
             if (!$semester)
                 return $this->error('Semester does not exist', 404);
 
-            return $this->success('Semester', $semester);
+            return $this->success('Semester', $semester->get()->format());
         } catch (\Exception $exception) {
             return $this->error($exception->getMessage(), $exception->getCode());
         }

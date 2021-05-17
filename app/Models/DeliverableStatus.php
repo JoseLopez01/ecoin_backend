@@ -18,6 +18,8 @@ class DeliverableStatus extends Model
         'is_active'
     ];
 
+    protected $primaryKey = 'status_id';
+
     public function deliverables()
     {
         return $this->hasMany(Deliverable::class, 'status_id', 'status_id');

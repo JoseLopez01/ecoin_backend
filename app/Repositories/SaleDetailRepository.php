@@ -32,7 +32,7 @@ class SaleDetailRepository implements SaleDetailInterface
             if (!$detail)
                 return $this->error('Detail not found', 404);
 
-            return $this->success('', $detail);
+            return $this->success('', $detail->get()->format());
         } catch (\Exception $exception) {
             return $this->error($exception->getMessage(), $exception->getCode());
         }

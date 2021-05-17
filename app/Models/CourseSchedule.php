@@ -19,6 +19,8 @@ class CourseSchedule extends Model
       'is_active'
     ];
 
+    protected $primaryKey = ['course_id', 'week_day_id'];
+
     public function course()
     {
         return $this->belongsTo(Course::class, 'course_id', 'course_id');

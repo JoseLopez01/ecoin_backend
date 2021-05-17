@@ -31,7 +31,7 @@ class SaleStatusRepository implements SaleStatusInterface
             if (!$status)
                 return $this->error('Status not found');
 
-            return $this->success('', $status);
+            return $this->success('', $status->get()->format());
         } catch (\Exception $exception) {
             return $this->error($exception->getMessage(), $exception->getCode());
         }

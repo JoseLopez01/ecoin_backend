@@ -18,6 +18,8 @@ class Shop extends Model
       'is_active'
     ];
 
+    protected $primaryKey = 'shop_id';
+
     public function course()
     {
         return $this->belongsTo(Course::class, 'course_id', 'course_id');

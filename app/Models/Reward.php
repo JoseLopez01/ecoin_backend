@@ -20,6 +20,8 @@ class Reward extends Model
       'is_active'
     ];
 
+    protected $primaryKey = 'reward_id';
+
     public function shop()
     {
         return $this->belongsTo(Shop::class, 'shop_id', 'shop_id');

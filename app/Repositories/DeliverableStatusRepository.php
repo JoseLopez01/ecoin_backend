@@ -32,7 +32,7 @@ class DeliverableStatusRepository implements DeliverableStatusInterface
             if (!$status)
                 return $this->error('Status not found', 404);
 
-            return $this->success('', $status);
+            return $this->success('', $status->get()->format());
         } catch (\Exception $exception) {
             return $this->error($exception->getMessage(), $exception->getCode());
         }

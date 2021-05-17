@@ -32,7 +32,7 @@ class StudentCourseRepository implements StudentCourseInterface
             if (!$course)
                 return $this->error('Course not found', 404);
 
-            return $this->success('', $course);
+            return $this->success('', $course->get()->format());
         } catch (\Exception $exception) {
             return $this->error($exception->getMessage(), $exception->getCode());
         }

@@ -19,6 +19,8 @@ class StudentCourse extends Model
       'is_active'
     ];
 
+    protected $primaryKey = ['course_id', 'user_id'];
+
     public function format()
     {
         return [

@@ -16,7 +16,7 @@ class RewardRepository implements RewardInterface
     public function getAll()
     {
         try {
-            $rewards = Reward::where('is_active', '=', true);
+            $rewards = Reward::where('is_active', '=', true)->get()->map->format();
             return $this->success('', $rewards);
         } catch (\Exception $exception) {
             return $this->error($exception->getMessage(), $exception->getCode());
@@ -31,7 +31,7 @@ class RewardRepository implements RewardInterface
             if (!$reward)
                 return $this->error('Reward not found', 404);
 
-            return $this->success('', $reward);
+            return $this->success('', $reward->get()->format());
         } catch (\Exception $exception) {
             return $this->error($exception->getMessage(), $exception->getCode());
         }

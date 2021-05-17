@@ -20,6 +20,8 @@ class DeliverableFile extends Model
         'is_active'
     ];
 
+    protected $primaryKey = 'deliverable_file_id';
+
     public function deliverable()
     {
         return $this->belongsTo(Deliverable::class, 'deliverable_id', 'deliverable_id');

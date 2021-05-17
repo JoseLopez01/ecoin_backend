@@ -21,6 +21,8 @@ class Deliverable extends Model
         'comments'
     ];
 
+    protected $primaryKey = 'deliverable_id';
+
     public function status()
     {
         return $this->belongsTo(DeliverableStatus::class, 'status_id', 'status_id');

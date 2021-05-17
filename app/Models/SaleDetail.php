@@ -18,6 +18,8 @@ class SaleDetail extends Model
         'reward_id'
     ];
 
+    protected $primaryKey = 'sale_detail_id';
+
     public function sale()
     {
         return $this->belongsTo(SaleHeader::class, 'sale_header_id', 'sale_header_id');

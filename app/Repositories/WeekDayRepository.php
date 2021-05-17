@@ -16,7 +16,7 @@ class WeekDayRepository implements WeekDayInterface
     public function getAll()
     {
         try {
-            $weekdayd = WeekDay::where('is_active', '=', true);
+            $weekdayd = WeekDay::where('is_active', '=', true)->get()->map->format();
             return $this->success('', $weekdayd);
         } catch (\Exception $exception) {
             return $this->error($exception->getMessage(), $exception->getCode());

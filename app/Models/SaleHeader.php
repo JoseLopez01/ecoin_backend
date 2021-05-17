@@ -20,6 +20,8 @@ class SaleHeader extends Model
         'sale_date'
     ];
 
+    protected $primaryKey = 'sale_header_id';
+
     public function status()
     {
         return $this->belongsTo(SaleStatus::class, 'status_id', 'status_id');

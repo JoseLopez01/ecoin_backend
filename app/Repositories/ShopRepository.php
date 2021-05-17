@@ -30,7 +30,7 @@ class ShopRepository implements ShopInterface
             if (!$shop)
                 return $this->error('Shop not found', 404);
 
-            return $this->success('', $shop);
+            return $this->success('', $shop->get()->format());
         } catch (\Exception $exception) {
             return $this->error($exception->getMessage(), $exception->getCode());
         }
