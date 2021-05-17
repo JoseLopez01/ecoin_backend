@@ -20,6 +20,10 @@ class UserType extends Model
         'is_active'
     ];
 
+    protected $casts = [
+        'is_active' => 'boolean'
+    ];
+
     public function users()
     {
         return $this->hasMany(User::class, 'user_type_id', 'user_type_id');

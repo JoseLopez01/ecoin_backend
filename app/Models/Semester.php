@@ -20,6 +20,10 @@ class Semester extends Model
         'is_active'
     ];
 
+    protected $casts = [
+        'is_active' => 'boolean'
+    ];
+
     public function users()
     {
         return $this->hasMany(User::class, 'semester_id', 'semester_id');

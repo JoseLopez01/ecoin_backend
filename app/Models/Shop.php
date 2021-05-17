@@ -20,6 +20,10 @@ class Shop extends Model
 
     protected $primaryKey = 'shop_id';
 
+    protected $casts = [
+        'is_active' => 'boolean'
+    ];
+
     public function course()
     {
         return $this->belongsTo(Course::class, 'course_id', 'course_id');

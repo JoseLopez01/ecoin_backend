@@ -22,6 +22,10 @@ class DeliverableFile extends Model
 
     protected $primaryKey = 'deliverable_file_id';
 
+    protected $casts = [
+        'is_active' => 'boolean'
+    ];
+
     public function deliverable()
     {
         return $this->belongsTo(Deliverable::class, 'deliverable_id', 'deliverable_id');

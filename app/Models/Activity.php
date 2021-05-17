@@ -24,6 +24,10 @@ class Activity extends Model
 
     protected $primaryKey = 'activity_id';
 
+    protected $casts = [
+        'is_active' => 'boolean'
+    ];
+
     public function course()
     {
         return $this->belongsTo(Course::class, 'class_id', 'class_id');

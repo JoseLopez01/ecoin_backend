@@ -21,6 +21,10 @@ class Course extends Model
 
     protected $primaryKey = 'course_id';
 
+    protected $casts = [
+        'is_active' => 'boolean'
+    ];
+
     public function users()
     {
         return $this->belongsToMany(User::class, 'student_courses', 'course_id', 'user_id');

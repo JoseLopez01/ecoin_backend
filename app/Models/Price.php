@@ -22,6 +22,10 @@ class Price extends Model
 
     protected $primaryKey = 'price_id';
 
+    protected $casts = [
+        'is_active' => 'boolean'
+    ];
+
     public function reward()
     {
         return $this->belongsTo(Reward::class, 'reward_id', 'reward_id');

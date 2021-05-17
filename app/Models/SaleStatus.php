@@ -20,6 +20,10 @@ class SaleStatus extends Model
 
     protected $primaryKey = 'status_id';
 
+    protected $casts = [
+        'is_active' => 'boolean'
+    ];
+
     public function sales()
     {
         return $this->hasMany(SaleHeader::class, 'status_id', 'status_id');

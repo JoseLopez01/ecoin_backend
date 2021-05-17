@@ -22,6 +22,10 @@ class Reward extends Model
 
     protected $primaryKey = 'reward_id';
 
+    protected $casts = [
+        'is_active' => 'boolean'
+    ];
+
     public function shop()
     {
         return $this->belongsTo(Shop::class, 'shop_id', 'shop_id');

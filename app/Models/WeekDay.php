@@ -21,6 +21,10 @@ class WeekDay extends Model
 
     protected $primaryKey = 'week_day_id';
 
+    protected $casts = [
+        'is_active' => 'boolean'
+    ];
+
     public function schedules()
     {
         return $this->hasMany(CourseSchedule::class, 'week_day_id', 'week_day_id');

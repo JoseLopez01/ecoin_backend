@@ -20,6 +20,10 @@ class DeliverableStatus extends Model
 
     protected $primaryKey = 'status_id';
 
+    protected $casts = [
+        'is_active' => 'boolean'
+    ];
+
     public function deliverables()
     {
         return $this->hasMany(Deliverable::class, 'status_id', 'status_id');
