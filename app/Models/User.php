@@ -82,7 +82,8 @@ class User extends Authenticatable
             'semester' => [
                 'semesterid' => $this->semester->semester_id,
                 'description' => $this->semester->description
-            ]
+            ],
+            'userid' => $this->user_id
         ];
     }
 }
