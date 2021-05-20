@@ -19,7 +19,8 @@ class Activity extends Model
         'description',
         'until',
         'since',
-        'is_active'
+        'is_active',
+        'ecoins'
     ];
 
     protected $primaryKey = 'activity_id';
@@ -47,7 +48,8 @@ class Activity extends Model
             'description' => $this->description,
             'until' => $this->until,
             'since' => $this->since,
-            'isactive' => $this->is_active
+            'isactive' => $this->is_active,
+            'ecoins' => $this->ecoins
         ];
     }
 }

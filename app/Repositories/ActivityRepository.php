@@ -46,6 +46,7 @@ class ActivityRepository implements ActivityInterface
             $activity->description = $request->description;
             $activity->until = $request->until;
             $activity->since = $request->since;
+            $activity->ecoins = $request->ecoins;
             $activity->save();
 
             return $this->success('Activity created', [], 201);
