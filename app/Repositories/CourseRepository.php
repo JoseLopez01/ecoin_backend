@@ -55,7 +55,7 @@ class CourseRepository implements CourseInterface
             $course->name = $request->name;
             $course->save();
 
-            return $this->success('Course created', 201);
+            return $this->success('Course created', null, 201);
         } catch (\Exception $exception) {
             return $this->error($exception->getMessage(), $exception->getCode());
         }
