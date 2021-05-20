@@ -81,6 +81,6 @@ class AuthRepository implements AuthInterface {
 
     public function user(Request $request)
     {
-        return $this->success('', $request->user());
+        return $this->success('', [$request->user()->format()]);
     }
 }

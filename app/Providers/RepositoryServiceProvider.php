@@ -81,6 +81,10 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Interfaces\CourseScheduleInterface',
             'App\Repositories\CourseScheduleRepository'
         );
+        $this->app->bind(
+            'App\Interfaces\UserInterface',
+            'App\Repositories\UserRepository'
+        );
     }
 
     /**

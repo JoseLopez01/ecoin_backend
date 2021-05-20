@@ -40,4 +40,8 @@ interface UserInterface {
      * @method DELETE
      */
     public function delete(int $id);
+
+    public function searchStudents(string $search);
+
+    public function getCourses(Request $request);
 }

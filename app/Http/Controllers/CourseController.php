@@ -14,9 +14,9 @@ class CourseController extends Controller
         $this->courseInterface = $courseInterface;
     }
 
-    public function getAll()
+    public function getAll(Request $request)
     {
-        return $this->courseInterface->getAll();
+        return $this->courseInterface->getAll($request);
     }
 
     public function getById(int $id)
@@ -67,5 +67,15 @@ class CourseController extends Controller
     public function getClassShop($classId)
     {
         return $this->courseInterface->getClassShop($classId);
+    }
+
+    /**
+     * Get class activities
+     *
+     * @method GET
+     */
+    public function getActivities(int $classId)
+    {
+        return $this->courseInterface->getActivities($classId);
     }
 }

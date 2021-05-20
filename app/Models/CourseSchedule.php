@@ -19,8 +19,6 @@ class CourseSchedule extends Model
       'is_active'
     ];
 
-    protected $primaryKey = ['course_id', 'week_day_id'];
-
     protected $casts = [
         'is_active' => 'boolean'
     ];

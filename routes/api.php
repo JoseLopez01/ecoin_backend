@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 // Controllers imports
 use App\Http\Controllers\DeliverableStatusController;
+use App\Http\Controllers\CourseScheduleController;
 use App\Http\Controllers\StudentCourseController;
 use App\Http\Controllers\DeliverableController;
 use App\Http\Controllers\SaleHeaderController;
@@ -79,6 +80,7 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::get('/{id}', [CourseController::class, 'getById']);
         Route::get('/{classId}/shop', [CourseController::class, 'getClassShop']);
         Route::get('/{classId}/schedules', [CourseController::class, 'getSchedules']);
+        Route::get('/{classId}/activities', [CourseController::class, 'getActivities']);
 
         Route::group(['middleware' => ['auth', 'checkUserType:Admin,Teacher']], function () {
             Route::post('', [CourseController::class, 'create']);
@@ -188,13 +190,10 @@ Route::group(['middleware' => 'auth:api'], function () {
     });
 
     Route::prefix('users')->group(function () {
-        Route::get('', [UserController::class, 'getAll']);
-        Route::get('/{id}', [UserController::class, 'getById']);
+        Route::get('/courses', [UserController::class, 'getCourses']);
 
         Route::group(['middleware' => ['auth', 'checkUserType:Admin']], function () {
-            Route::post('', [UserController::class, 'create']);
-            Route::put('/{id}', [UserController::class, 'update']);
-            Route::delete('/{id}', [UserController::class, 'delete']);
+            Route::get('/{search}/student', [UserController::class, 'searchStudents']);
         });
     });
 
@@ -207,6 +206,12 @@ Route::group(['middleware' => 'auth:api'], function () {
             Route::put('/{id}', [WeekDayController::class, 'update']);
             Route::delete('/{id}', [WeekDayController::class, 'delete']);
         });
+    });
+
+    Route::prefix('schedules')->group(function () {
+      Route::group(['middleware' => ['auth', 'checkUserType:Admin']], function () {
+        Route::post('', [CourseScheduleController::class, 'create']);
+      });
     });
 
 });

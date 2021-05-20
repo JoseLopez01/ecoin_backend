@@ -19,8 +19,6 @@ class StudentCourse extends Model
       'is_active'
     ];
 
-    protected $primaryKey = ['course_id', 'user_id'];
-
     protected $casts = [
         'is_active' => 'boolean'
     ];

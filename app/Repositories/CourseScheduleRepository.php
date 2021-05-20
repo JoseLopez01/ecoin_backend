@@ -45,7 +45,7 @@ class CourseScheduleRepository implements CourseScheduleInterface
             $schedule->week_day_id = $request->weekdayid;
             $schedule->save();
 
-            return $this->success('Schedule created', 201);
+            return $this->success('Schedule created', null, 201);
         } catch (\Exception $exception) {
             return $this->error($exception->getMessage(), $exception->getCode());
         }

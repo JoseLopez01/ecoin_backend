@@ -63,4 +63,14 @@ class UserController extends Controller
     {
         return $this->userInterface->delete($id);
     }
+
+    public function searchStudents(string $search)
+    {
+        return $this->userInterface->searchStudents($search);
+    }
+
+    public function getCourses(Request $request)
+    {
+        return $this->userInterface->getCourses($request);
+    }
 }

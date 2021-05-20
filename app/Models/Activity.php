@@ -14,7 +14,7 @@ class Activity extends Model
     use HasFactory;
 
     protected $fillable = [
-        'class_id',
+        'course_id',
         'name',
         'description',
         'until',
@@ -41,7 +41,8 @@ class Activity extends Model
     public function format()
     {
         return [
-            'classid' => $this->class_id,
+            'activityid' => $this->activity_id,
+            'courseid' => $this->course_id,
             'name' => $this->name,
             'description' => $this->description,
             'until' => $this->until,

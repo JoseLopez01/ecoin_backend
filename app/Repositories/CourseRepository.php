@@ -14,10 +14,14 @@ class CourseRepository implements CourseInterface
 
     use ResponseAPI;
 
-    public function getAll()
+    public function getAll(Request $request)
     {
         try {
-            $courses = Course::where('is_active', '=', true)->get()->map->format();
+            $courses = Course::where('is_active', '=', true, )
+                ->where('user_id', '=', $request->user()->user_id)
+                ->withCount('users')
+                ->with('weekdays')
+                ->get()->map->format();
 
             return $this->success('All courses', $courses);
         } catch (\Exception $exception) {
@@ -29,13 +33,16 @@ class CourseRepository implements CourseInterface
     public function getById(int $id)
     {
         try {
-            $course = Course::find($id);
+            $course = Course::where('course_id', '=', $id)
+              ->withCount('users')
+              ->get()->map->format();
 
             if (!$course)
                 return $this->error('Course not found', 404);
 
-            return $this->success('Course', $course->get()->format());
+            return $this->success('Course', $course);
         } catch (\Exception $exception) {
+            echo $exception;
             return $this->error($exception->getMessage(), $exception->getCode());
         }
     }
@@ -93,7 +100,9 @@ class CourseRepository implements CourseInterface
             if (!$course)
                 return $this->error('Course not found', 404);
 
-            $students = $course->users();
+            $students = $course->users()
+                ->with('semester')
+                ->get()->map->formatAsStudent();
 
             return $this->success('', $students);
         } catch (\Exception $exception) {
@@ -125,9 +134,27 @@ class CourseRepository implements CourseInterface
             if (!$course)
                 return $this->error('Course not found', 404);
 
+            echo $course->schedules();
+
             $schedules = $course->schedules();
 
             return $this->success('', $schedules);
+        } catch (\Exception $exception) {
+            return $this->error($exception->getMessage(), $exception->getCode());
+        }
+    }
+
+    public function getActivities(int $classId)
+    {
+        try {
+            $course = Course::find($classId);
+
+            if (!$course)
+                return $this->error('Course not found', 404);
+
+            $activities = $course->activities()->get()->map->format();
+
+            return $this->success('', $activities);
         } catch (\Exception $exception) {
             return $this->error($exception->getMessage(), $exception->getCode());
         }

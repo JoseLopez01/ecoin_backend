@@ -10,7 +10,7 @@ interface CourseInterface {
      * Gets all active resources
      * @method GET
     */
-    public function getAll();
+    public function getAll(Request $request);
 
     /**
      * Get a single resource by id
@@ -56,4 +56,11 @@ interface CourseInterface {
      * @method GET
     */
     public function getClassShop($classId);
+
+    /**
+     * Get class activities
+     *
+     * @method GET
+    */
+    public function getActivities(int $classId);
 }

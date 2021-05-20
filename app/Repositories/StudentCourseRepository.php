@@ -48,6 +48,7 @@ class StudentCourseRepository implements StudentCourseInterface
 
             return $this->success('Student course created', null, 201);
         } catch (\Exception $exception) {
+            echo $exception;
             return $this->error($exception->getMessage(), $exception->getCode());
         }
     }

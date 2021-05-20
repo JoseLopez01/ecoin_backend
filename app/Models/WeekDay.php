@@ -25,9 +25,9 @@ class WeekDay extends Model
         'is_active' => 'boolean'
     ];
 
-    public function schedules()
+    public function courses()
     {
-        return $this->hasMany(CourseSchedule::class, 'week_day_id', 'week_day_id');
+        return $this->belongsToMany(Course::class, 'course_schedules', 'week_day_id', 'course_id');
     }
 
     public function format()

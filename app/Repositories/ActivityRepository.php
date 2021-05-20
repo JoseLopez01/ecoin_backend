@@ -41,15 +41,16 @@ class ActivityRepository implements ActivityInterface
     {
         try {
             $activity = new Activity();
-            $activity->class_id = $request->classid;
+            $activity->course_id = $request->courseid;
             $activity->name = $request->name;
             $activity->description = $request->description;
             $activity->until = $request->until;
             $activity->since = $request->since;
             $activity->save();
 
-            return $this->success('Activity created', 201);
+            return $this->success('Activity created', [], 201);
         } catch (\Exception $exception) {
+            echo $exception->getMessage();
             return $this->error($exception->getMessage(), $exception->getCode());
         }
     }
