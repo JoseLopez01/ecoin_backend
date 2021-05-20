@@ -14,7 +14,7 @@ class Shop extends Model
     use HasFactory;
 
     protected $fillable = [
-      'class_id',
+      'course_id',
       'is_active'
     ];
 
@@ -37,8 +37,27 @@ class Shop extends Model
     public function format()
     {
         return [
-            'classid' => $this->class_id,
-            'isactive' => $this->is_active
+            'shopid' => $this->shop_id,
+            'courseid' => $this->course_id,
+            'isactive' => $this->is_active,
+            'rewards' => $this->rewards->map(
+                function ($reward)
+                {
+                    return [
+                        'rewardid' => $reward->reward_id,
+                        'shopid' => $reward->shop_id,
+                        'name' => $reward->name,
+                        'description' => $reward->description,
+                        'isactive' => $reward->is_Active,
+                        'price' => [
+                            'priceid' => $reward->price->price_id,
+                            'rewardid' => $reward->price->reward_id,
+                            'price' => $reward->price->price,
+                            'isactive' => $reward->price->is_active
+                        ]
+                    ];
+                }
+            )
         ];
     }
 }

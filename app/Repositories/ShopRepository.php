@@ -40,7 +40,7 @@ class ShopRepository implements ShopInterface
     {
         try {
             $shop = new Shop();
-            $shop->class_id = $request->classid;
+            $shop->course_id = $request->courseid;
             $shop->save();
 
             return $this->success('Shop created', null, 201);

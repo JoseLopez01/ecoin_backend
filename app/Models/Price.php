@@ -16,7 +16,6 @@ class Price extends Model
     protected $fillable = [
       'reward_id',
       'price',
-      'description',
       'is_active'
     ];
 

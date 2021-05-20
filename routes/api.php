@@ -116,9 +116,9 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::get('/{id}', [PriceController::class, 'getById']);
 
         Route::group(['middleware' => ['auth', 'checkUserType:Admin,Teacher']], function () {
-            Route::post('', [DeliverableStatusController::class, 'create']);
-            Route::put('/{id}', [DeliverableStatusController::class, 'update']);
-            Route::delete('/{id}', [DeliverableStatusController::class, 'delete']);
+            Route::post('', [PriceController::class, 'create']);
+            Route::put('/{id}', [PriceController::class, 'update']);
+            Route::delete('/{id}', [PriceController::class, 'delete']);
         });
     });
 

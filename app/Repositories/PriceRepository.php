@@ -41,14 +41,15 @@ class PriceRepository implements PriceInterface
     public function create(Request $request)
     {
         try {
+            echo $request;
             $price = new Price();
             $price->reward_id = $request->rewardid;
             $price->price = $request->price;
-            $price->description = $request->description;
             $price->save();
 
             return $this->success('Price added', 201);
         } catch (\Exception $exception) {
+            echo $exception;
             return $this->error($exception->getMessage(), $exception->getCode());
         }
     }
